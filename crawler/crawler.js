@@ -17,7 +17,7 @@ var callback = function(error, response, body, year) {
                 var songTitle = row.find('.views-field-field-nominee-work').text().trim(' ');
                 songTitle = songTitle.split('(')[0];
                 console.log(year + ' - ' + songTitle);
-                csvValues.push(year + ", " + songTitle);
+                csvValues.push(year + "\t" + songTitle);
             }
         });
     } else {
@@ -43,9 +43,9 @@ for(var i = 0; i < 56; i++) {
 }
 
 q.drain = function() {
-    csvValues.sort();
+    csvValues.sort().reverse();
     csvContent = csvValues.join("\n");
-    fs.writeFile("../grammys.csv", csvContent, function(err) {
+    fs.writeFile("../grammys.tsv", csvContent, function(err) {
         if(err) {
             return console.log(err);
         }
