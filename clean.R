@@ -1,10 +1,10 @@
 source("timeToSec.R")
-chart_dirty = read.csv("./Book1.csv")
+chart_dirty = read.csv("./Billboard.csv")
 
 # Subset only specified fields
-charts <- subset(chart_dirty, select = c(Year, Artist, Title, Time, Genre))
+charts <- subset(chart_dirty, select = c(Year, Artist, Track, Time, Genre))
 # Subset only data from 1950 to have more consistent data
-charts <- subset(charts, Year > 1949)
+charts <- subset(charts, Year > 1959)
 # Create a new row with the time transformed from minutes to seconds
 charts$Time.num <- sapply(charts$Time, func_timeToSec)
 # Remove rows that have no info
